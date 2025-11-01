@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Créditos - MegaPixel</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="../img/logo2.png" type="image/png">
+  <link rel="stylesheet" href="../css/style-credits.css">
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <img src="../img/logo.png" alt="MegaPixelFL">
+      </div>
+      
+      <div class="nav-menu">
+        <a href="../index.html" class="nav-link">INICIO</a>
+        <a href="../index.html#services" class="nav-link">SERVICIOS</a>
+        <a href="../index.html#projects" class="nav-link">PROYECTOS</a>
+        <a href="contact.html" class="nav-link">CONTACTO</a>
+        <a href="plan.html" class="nav-link">PLANES</a>
+        <a href="credits.html" class="nav-link active">CRÉDITOS</a>
+      </div>
+      
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-menu" id="closeMenu">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="../index.html" class="nav-link">INICIO</a>
+    <a href="contact.html" class="nav-link">CONTACTO</a>
+    <a href="plan.html" class="nav-link">PLANES</a>
+    <a href="credits.html" class="nav-link active">CRÉDITOS</a>
+    <a href="terminos.html" class="nav-link">TERMINOS</a>
+  </div>
+
+  <div class="credits-hero">
+    <div class="credits-content">
+      <div class="welcome-card" id="welcomeCard">
+        <h2 class="welcome-title">Bienvenido al Sistema de Créditos</h2>
+        <p class="welcome-text">Para acceder al sistema de créditos, por favor ingresa tu nombre de usuario:</p>
+        <input type="text" class="username-input" id="usernameInput" placeholder="Tu nombre de usuario">
+        <button class="confirm-button" id="confirmButton">Confirmar</button>
+        <p class="terms-text">
+          Al confirmar, aceptas nuestros <a href="terminos.html" class="terms-link">Términos y Condiciones</a>
+        </p>
+      </div>
+
+      <div class="credits-system" id="creditsSystem">
+        <h2 class="credits-title">Sistema de Créditos</h2>
+        
+        <div class="balance-card">
+          <div class="balance-title">Saldo Actual</div>
+          <div class="balance-amount" id="balanceAmount">200</div>
+          <div class="balance-title">créditos</div>
+        </div>
+
+        <div class="generation-info">
+          <div class="generation-text">Generación de créditos:</div>
+          <div class="generation-rate">5 créditos / 7 min</div>
+        </div>
+
+        <div class="invoices-section">
+          <h3 class="invoices-title">Últimas Facturas</h3>
+          <div id="invoicesList">
+            <div class="no-invoices">No hay facturas registradas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="invoice-modal" id="invoiceModal">
+    <div class="invoice-modal-content">
+      <div class="invoice-header">
+        <div class="invoice-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+          </svg>
+        </div>
+        <h2 class="invoice-modal-title">Factura de Compra</h2>
+        <p class="invoice-subtitle">Detalles de tu transacción</p>
+      </div>
+      
+      <div class="invoice-details">
+        <div class="invoice-row">
+          <span class="invoice-label">ID de Factura:</span>
+          <span class="invoice-value invoice-id" id="invoiceId">MPX-000001</span>
+        </div>
+        <div class="invoice-row">
+          <span class="invoice-label">Plan:</span>
+          <span class="invoice-value" id="invoicePlan">Plan Básico</span>
+        </div>
+        <div class="invoice-row">
+          <span class="invoice-label">Costo:</span>
+          <span class="invoice-value invoice-cost" id="invoiceCost">50 créditos</span>
+        </div>
+        <div class="invoice-row">
+          <span class="invoice-label">Fecha:</span>
+          <span class="invoice-value" id="invoiceDate">01/01/2023</span>
+        </div>
+        <div class="invoice-row">
+          <span class="invoice-label">Hora:</span>
+          <span class="invoice-value" id="invoiceTime">12:00:00</span>
+        </div>
+      </div>
+
+      <p class="invoice-note">
+        (Favor de tomar captura y abrir un ticket en el <a href="https://discord.gg/RMfzSyNxjT" class="discord-link" target="_blank">Discord Oficial</a>)
+      </p>
+      
+      <button class="close-invoice" id="closeInvoice">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+        </svg>
+        Cerrar Factura
+      </button>
+    </div>
+  </div>
+
+  <script src="../js/script-credits.js"></script>
+</body>
+</html>
