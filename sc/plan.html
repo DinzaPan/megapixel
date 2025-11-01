@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Planes - MegaPixel</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="../img/logo2.png" type="image/png">
+  <link rel="stylesheet" href="../css/style-plan.css">
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <img src="../img/logo.png" alt="MegaPixelFL">
+      </div>
+      
+      <div class="nav-menu">
+        <a href="../index.html" class="nav-link">INICIO</a>
+        <a href="../index.html#services" class="nav-link">SERVICIOS</a>
+        <a href="contact.html" class="nav-link">CONTACTO</a>
+        <a href="plan.html" class="nav-link active">PLANES</a>
+        <a href="credits.html" class="nav-link">CRÉDITOS</a>
+      </div>
+      
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="user-balance" id="userBalance" style="display: none;">
+    <div class="balance-text">Tus créditos:</div>
+    <div class="balance-amount" id="currentUserBalance">0</div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-menu" id="closeMenu">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="../index.html" class="nav-link">INICIO</a>
+    <a href="../index.html#services" class="nav-link">SERVICIOS</a>
+    <a href="contact.html" class="nav-link">CONTACTO</a>
+    <a href="plan.html" class="nav-link active">PLANES</a>
+    <a href="credits.html" class="nav-link">CRÉDITOS</a>
+  </div>
+
+  <div class="plans-hero">
+    <div class="plans-content">
+      <h1 class="plans-title">Planes de Servicio</h1>
+      <p class="plans-subtitle">Elige el plan que mejor se adapte a tus necesidades de desarrollo web</p>
+    </div>
+  </div>
+
+  <section class="plans-section">
+    <div class="plans-container">
+      <div class="plans-grid">
+        <div class="plan-card">
+          <div class="plan-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 2.311L4.5 7.653v8.694l7.5 4.342 7.5-4.342V7.653L12 3.311zM12 16a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z"/>
+            </svg>
+          </div>
+          <h3 class="plan-name">Básico</h3>
+          <div class="plan-price">360</div>
+          <div class="plan-period">créditos</div>
+          <ul class="plan-features">
+            <li>Página web de 1 sección</li>
+            <li>Diseño responsivo básico</li>
+            <li>Formulario de contacto</li>
+            <li>Soporte por email</li>
+            <li>HTML5, CSS3 y JS</li>
+          </ul>
+          <button class="plan-button" data-plan="Plan Básico" data-cost="360">Seleccionar Plan</button>
+        </div>
+        
+        <div class="plan-card">
+          <div class="plan-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <h3 class="plan-name">Intermedio</h3>
+          <div class="plan-price">999</div>
+          <div class="plan-period">créditos</div>
+          <ul class="plan-features">
+            <li>Página web de 3-5 secciones</li>
+            <li>Diseño responsivo avanzado</li>
+            <li>Integración con redes sociales</li>
+            <li>Soporte de cambios por 1 semana</li>
+            <li>Uso de: HTML5, CSS3, JS, APIs</li>
+            <li>Optimización SEO básica</li>
+          </ul>
+          <button class="plan-button" data-plan="Plan Intermedio" data-cost="999">Seleccionar Plan</button>
+        </div>
+        
+        <div class="plan-card">
+          <div class="plan-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </div>
+          <h3 class="plan-name">Avanzado</h3>
+          <div class="plan-price">1490</div>
+          <div class="plan-period">créditos</div>
+          <ul class="plan-features">
+            <li>Página web completa</li>
+            <li>Diseño personalizado</li>
+            <li>Funcionalidades interactivas</li>
+            <li>Soporte de Cambios por 2 semanas</li>
+            <li>Uso de: HTML5, CSS3, JS, Java, PHP, MySQL y APIs</li>
+            <li>Optimización SEO avanzada</li>
+            <li>Integración con APIs</li>
+          </ul>
+          <button class="plan-button" data-plan="Plan Avanzado" data-cost="1490">Seleccionar Plan</button>
+        </div>
+        
+        <div class="plan-card">
+          <div class="plan-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+            </svg>
+          </div>
+          <h3 class="plan-name">Mantenimiento</h3>
+          <div class="plan-price">420</div>
+          <div class="plan-period">créditos/mes</div>
+          <ul class="plan-features">
+            <li>Actualizaciones mensuales</li>
+            <li>Corrección de errores</li>
+            <li>Soporte técnico continuo</li>
+            <li>Backups regulares</li>
+            <li>Mejoras solicitadas</li>
+            <li>Renovación de contenido</li>
+          </ul>
+          <button class="plan-button" data-plan="Plan Mantenimiento" data-cost="420">Contratar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="purchase-modal" id="purchaseModal">
+    <div class="purchase-modal-content">
+      <div class="purchase-header">
+        <div class="purchase-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 1l3 6 6 .75-4.12 4.62L16.95 19 12 16.25 7.05 19l1.17-6.63L4 7.75 9 7z"/>
+          </svg>
+        </div>
+        <h2 class="purchase-title">Confirmar Compra</h2>
+        <p class="purchase-subtitle">Revisa los detalles de tu pedido</p>
+      </div>
+      
+      <div class="purchase-details">
+        <div class="purchase-plan" id="purchasePlanName">Plan Básico</div>
+        <div class="purchase-cost" id="purchaseCost">360 créditos</div>
+        
+        <div class="balance-info">
+          <span class="balance-label">Saldo actual:</span>
+          <span class="balance-value" id="currentBalance">200 créditos</span>
+        </div>
+        
+        <div class="balance-info">
+          <span class="balance-label">Costo del plan:</span>
+          <span class="balance-value" id="planCost">360 créditos</span>
+        </div>
+        
+        <div class="balance-info">
+          <span class="balance-label">Saldo después:</span>
+          <span class="balance-value" id="remainingBalance">0 créditos</span>
+        </div>
+      </div>
+      
+      <div class="purchase-buttons">
+        <button class="confirm-purchase" id="confirmPurchase">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+          Confirmar Compra
+        </button>
+        <button class="cancel-purchase" id="cancelPurchase">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/script-plan.js"></script>
+</body>
+</html>
