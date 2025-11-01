@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página No Encontrada - MegaPixel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="../img/logo2.png" type="image/png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a12;
+      color: #fff;
+      font-family: "Poppins", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .error-card {
+      background: rgba(20, 20, 30, 0.8);
+      border-radius: 24px;
+      padding: 3rem;
+      max-width: 450px;
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(20px);
+    }
+
+    .error-image {
+      margin: 0 auto 1.5rem;
+      max-width: 150px;
+    }
+
+    .error-image img {
+      width: 100%;
+      height: auto;
+    }
+
+    .error-code {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #3a86ff, #ff006e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 20px rgba(58, 134, 255, 0.3);
+    }
+
+    .error-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .error-message {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .home-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #3a86ff, #8338ec);
+      color: white;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .home-button:hover::before {
+      left: 100%;
+    }
+
+    .home-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(58, 134, 255, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      
+      .error-card {
+        padding: 2rem;
+        max-width: 400px;
+      }
+      
+      .error-image {
+        max-width: 120px;
+      }
+      
+      .error-code {
+        font-size: 3rem;
+      }
+      
+      .error-title {
+        font-size: 1.4rem;
+      }
+      
+      .error-message {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .error-card {
+        padding: 1.5rem;
+        max-width: 350px;
+      }
+      
+      .error-image {
+        max-width: 100px;
+      }
+      
+      .error-code {
+        font-size: 2.5rem;
+      }
+      
+      .error-title {
+        font-size: 1.2rem;
+      }
+      
+      .error-message {
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+      }
+      
+      .home-button {
+        padding: 10px 24px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="error-card">
+    <div class="error-image">
+      <img src="../img/error/error.gif" alt="Error 404">
+    </div>
+    
+    <div class="error-code">404</div>
+    
+    <h1 class="error-title">Página No Encontrada</h1>
+    
+    <p class="error-message">
+      Lo sentimos, la página que estás buscando no existe o ha sido movida.
+      Puede que hayas seguido un enlace incorrecto o la página haya sido eliminada.
+    </p>
+    
+    <a href="../index.html" class="home-button">
+      <i class="fas fa-home"></i>
+      Volver al Inicio
+    </a>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const errorImage = document.querySelector('.error-image img');
+      if (errorImage) {
+        errorImage.onerror = function() {
+          const errorImageContainer = document.querySelector('.error-image');
+          errorImageContainer.innerHTML = '<i class="fas fa-exclamation-triangle" style="font-size: 80px; color: #ff006e;"></i>';
+        };
+      }
+    });
+  </script>
+</body>
+</html>
