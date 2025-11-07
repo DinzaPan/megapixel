@@ -528,7 +528,7 @@
         
         const addons = data.record?.addons || [];
         
-        addons.sort((a, b) => new Date(b.dateAdded || 0) - new Date(a.dateAdded || 0));
+        addons.reverse();
         
         displayAddons(addons);
         
