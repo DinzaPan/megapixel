@@ -7,7 +7,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="icon" href="../img/logo2.png" type="image/png">
+  <link rel="icon" href="./img/logo2.png" type="image/png">
 
   <style>
     :root {
@@ -95,15 +95,45 @@
       align-items: center;
     }
 
-    .page-title {
-      font-size: 3rem;
-      font-weight: 800;
-      text-align: center;
-      margin-bottom: 60px;
-      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 4px 30px rgba(58, 134, 255, 0.3);
+    /* BUSCADOR */
+    .search-container {
+      max-width: 600px;
+      width: 100%;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 18px 25px;
+      font-size: 1.1rem;
+      background: rgba(10, 10, 15, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      color: #fff;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .search-box:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 8px 30px rgba(58, 134, 255, 0.2);
+      background: rgba(15, 15, 20, 0.7);
+    }
+
+    .search-box::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.2rem;
     }
 
     /* GRID DE TARJETAS HORIZONTALES PARA PC */
@@ -208,16 +238,53 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .minecraft-icon {
-      width: 18px;
-      height: 18px;
-      color: #6AFF70;
-    }
-
     .version-text {
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.8);
       font-weight: 500;
+    }
+
+    /* BOTÓN FLOTANTE */
+    .floating-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(58, 134, 255, 0.4);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      border: none;
+    }
+
+    .floating-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(58, 134, 255, 0.6);
+    }
+
+    /* MENSAJE DE NO RESULTADOS */
+    .no-results {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.2rem;
+      margin-top: 40px;
+      display: none;
+    }
+
+    /* LOADING */
+    .loading {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.2rem;
+      margin-top: 40px;
     }
 
     /* RESPONSIVE */
@@ -242,9 +309,14 @@
         padding: 100px 15px 30px;
       }
       
-      .page-title {
-        font-size: 2.2rem;
+      .search-container {
+        max-width: 500px;
         margin-bottom: 40px;
+      }
+      
+      .search-box {
+        padding: 16px 20px;
+        font-size: 1rem;
       }
       
       .cards-container {
@@ -280,13 +352,15 @@
         padding: 5px 10px;
       }
       
-      .minecraft-icon {
-        width: 16px;
-        height: 16px;
-      }
-      
       .version-text {
         font-size: 0.85rem;
+      }
+      
+      .floating-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
       }
     }
 
@@ -307,9 +381,12 @@
         padding: 90px 12px 25px;
       }
       
-      .page-title {
-        font-size: 1.8rem;
+      .search-container {
         margin-bottom: 30px;
+      }
+      
+      .search-box {
+        padding: 14px 18px;
       }
       
       .card {
@@ -347,11 +424,6 @@
         gap: 6px;
       }
       
-      .minecraft-icon {
-        width: 14px;
-        height: 14px;
-      }
-      
       .version-text {
         font-size: 0.8rem;
       }
@@ -363,129 +435,155 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <div class="nav-logo">
-        <img src="../img/logo.png" alt="MegaPixelFL">
+        <img src="./img/logo.png" alt="MegaPixelFL">
         <div class="nav-title">MCPixel</div>
       </div>
     </div>
   </nav>
 
   <div class="container">
-    <h1 class="page-title">Nuestros Addons</h1>
-    
-    <div class="cards-container">
-      <!-- Tarjeta 1 -->
-      <div class="card" data-url="https://example.com/addon1">
-        <div class="logo-frame">
-          <img src="./img/addon.jpg" alt="MCPixel Adventure" onerror="this.src='https://via.placeholder.com/150/0a0a12/3a86ff?text=Addon'">
-        </div>
-        <div class="card-info">
-          <h2 class="card-title">MCPixel Adventure</h2>
-          <div class="author-container">
-            <p class="card-author">by <span class="author-name">Alex Creator</span></p>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="verified-user-icon">
-              <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
-            </svg>
-          </div>
-        </div>
-        <div class="version-container">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="minecraft-icon">
-            <path d="M4 2H20C21.1 2 22 2.9 22 4V20C22 21.1 21.1 22 20 22H4C2.9 22 2 21.1 2 20V4C2 2.9 2.9 2 4 2ZM4 4V20H11V18H9V16H11V13H9V11H11V8H9V6H11V4H4ZM13 4V20H20V4H13ZM15 6H18V8H15V6ZM15 9H18V11H15V9ZM15 12H18V14H15V12ZM15 15H18V17H15V15Z"/>
-          </svg>
-          <span class="version-text">1.21.121</span>
-        </div>
-      </div>
-
-      <!-- Tarjeta 2 -->
-      <div class="card" data-url="https://example.com/addon2">
-        <div class="logo-frame">
-          <img src="./img/addon.jpg" alt="MCPixel Magic" onerror="this.src='https://via.placeholder.com/150/0a0a12/3a86ff?text=Addon'">
-        </div>
-        <div class="card-info">
-          <h2 class="card-title">MCPixel Magic</h2>
-          <div class="author-container">
-            <p class="card-author">by <span class="author-name">Sarah Dev</span></p>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="verified-user-icon">
-              <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
-            </svg>
-          </div>
-        </div>
-        <div class="version-container">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="minecraft-icon">
-            <path d="M4 2H20C21.1 2 22 2.9 22 4V20C22 21.1 21.1 22 20 22H4C2.9 22 2 21.1 2 20V4C2 2.9 2.9 2 4 2ZM4 4V20H11V18H9V16H11V13H9V11H11V8H9V6H11V4H4ZM13 4V20H20V4H13ZM15 6H18V8H15V6ZM15 9H18V11H15V9ZM15 12H18V14H15V12ZM15 15H18V17H15V15Z"/>
-          </svg>
-          <span class="version-text">1.20.4</span>
-        </div>
-      </div>
-
-      <!-- Tarjeta 3 -->
-      <div class="card" data-url="https://example.com/addon3">
-        <div class="logo-frame">
-          <img src="./img/addon.jpg" alt="MCPixel Tech" onerror="this.src='https://via.placeholder.com/150/0a0a12/3a86ff?text=Addon'">
-        </div>
-        <div class="card-info">
-          <h2 class="card-title">MCPixel Tech</h2>
-          <div class="author-container">
-            <p class="card-author">by <span class="author-name">Mike Developer</span></p>
-            <!-- Sin verificación -->
-          </div>
-        </div>
-        <div class="version-container">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="minecraft-icon">
-            <path d="M4 2H20C21.1 2 22 2.9 22 4V20C22 21.1 21.1 22 20 22H4C2.9 22 2 21.1 2 20V4C2 2.9 2.9 2 4 2ZM4 4V20H11V18H9V16H11V13H9V11H11V8H9V6H11V4H4ZM13 4V20H20V4H13ZM15 6H18V8H15V6ZM15 9H18V11H15V9ZM15 12H18V14H15V12ZM15 15H18V17H15V15Z"/>
-          </svg>
-          <span class="version-text">1.19.2</span>
-        </div>
-      </div>
-
-      <!-- Tarjeta 4 -->
-      <div class="card" data-url="https://example.com/addon4">
-        <div class="logo-frame">
-          <img src="./img/addon.jpg" alt="MCPixel Fantasy" onerror="this.src='https://via.placeholder.com/150/0a0a12/3a86ff?text=Addon'">
-        </div>
-        <div class="card-info">
-          <h2 class="card-title">MCPixel Fantasy</h2>
-          <div class="author-container">
-            <p class="card-author">by <span class="author-name">Luna Designer</span></p>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="verified-user-icon">
-              <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
-            </svg>
-          </div>
-        </div>
-        <div class="version-container">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="minecraft-icon">
-            <path d="M4 2H20C21.1 2 22 2.9 22 4V20C22 21.1 21.1 22 20 22H4C2.9 22 2 21.1 2 20V4C2 2.9 2.9 2 4 2ZM4 4V20H11V18H9V16H11V13H9V11H11V8H9V6H11V4H4ZM13 4V20H20V4H13ZM15 6H18V8H15V6ZM15 9H18V11H15V9ZM15 12H18V14H15V12ZM15 15H18V17H15V15Z"/>
-          </svg>
-          <span class="version-text">1.18.2</span>
-        </div>
-      </div>
-
-      <!-- Tarjeta 5 -->
-      <div class="card" data-url="https://example.com/addon5">
-        <div class="logo-frame">
-          <img src="./img/addon.jpg" alt="MCPixel Ultimate" onerror="this.src='https://via.placeholder.com/150/0a0a12/3a86ff?text=Addon'">
-        </div>
-        <div class="card-info">
-          <h2 class="card-title">MCPixel Ultimate</h2>
-          <div class="author-container">
-            <p class="card-author">by <span class="author-name">Team MCPixel</span></p>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="verified-user-icon">
-              <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
-            </svg>
-          </div>
-        </div>
-        <div class="version-container">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="minecraft-icon">
-            <path d="M4 2H20C21.1 2 22 2.9 22 4V20C22 21.1 21.1 22 20 22H4C2.9 22 2 21.1 2 20V4C2 2.9 2.9 2 4 2ZM4 4V20H11V18H9V16H11V13H9V11H11V8H9V6H11V4H4ZM13 4V20H20V4H13ZM15 6H18V8H15V6ZM15 9H18V11H15V9ZM15 12H18V14H15V12ZM15 15H18V17H15V15Z"/>
-          </svg>
-          <span class="version-text">1.21.0</span>
-        </div>
-      </div>
+    <!-- BUSCADOR -->
+    <div class="search-container">
+      <input type="text" class="search-box" id="searchBox" placeholder="Buscar addons por nombre o creador...">
+      <i class="fas fa-search search-icon"></i>
     </div>
+    
+    <!-- MENSAJE DE NO RESULTADOS -->
+    <div class="no-results" id="noResults">
+      No se encontraron addons que coincidan con tu búsqueda
+    </div>
+
+    <!-- LOADING -->
+    <div class="loading" id="loading">
+      Cargando addons...
+    </div>
+    
+    <!-- TARJETAS -->
+    <div class="cards-container" id="cardsContainer"></div>
   </div>
 
+  <!-- BOTÓN FLOTANTE -->
+  <button class="floating-btn" onclick="window.location.href='post.html'">
+    <i class="fas fa-plus"></i>
+  </button>
+
+  <script src="./js/list.js"></script>
   <script>
     const navbar = document.getElementById('navbar');
-    const cards = document.querySelectorAll('.card');
+    const searchBox = document.getElementById('searchBox');
+    const cardsContainer = document.getElementById('cardsContainer');
+    const noResults = document.getElementById('noResults');
+    const loading = document.getElementById('loading');
+
+    // CONFIGURACIÓN ACTUALIZADA CON TUS DATOS REALES
+    const JSONBIN_BIN_ID = '690d4c7843b1c97be99dc705';
+    const JSONBIN_MASTER_KEY = '$2a$10$IO4HdN4Wy8PwCaYknx9Yxegti3kHcf8gxUWMldt2yaEuuhDZxvD/2';
+    let lastRequestTime = 0;
+    const REQUEST_DELAY = 1000; // 1 segundo entre peticiones
+
+    // Función para hacer peticiones con rate limiting
+    async function makeRequest(url, options = {}) {
+      const now = Date.now();
+      const timeSinceLastRequest = now - lastRequestTime;
+      
+      if (timeSinceLastRequest < REQUEST_DELAY) {
+        await new Promise(resolve => setTimeout(resolve, REQUEST_DELAY - timeSinceLastRequest));
+      }
+      
+      lastRequestTime = Date.now();
+      const response = await fetch(url, options);
+      return response.json();
+    }
+
+    // Cargar addons desde JSONBin.io
+    async function loadAddons() {
+      try {
+        loading.style.display = 'block';
+        cardsContainer.style.display = 'none';
+        
+        const data = await makeRequest(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
+          headers: {
+            'X-Master-Key': JSONBIN_MASTER_KEY
+          }
+        });
+        
+        const addons = data.record?.addons || [];
+        displayAddons(addons);
+        
+      } catch (error) {
+        console.error('Error cargando addons:', error);
+        cardsContainer.innerHTML = '<div class="no-results">Error al cargar los addons</div>';
+        loading.style.display = 'none';
+        cardsContainer.style.display = 'block';
+      }
+    }
+
+    // Mostrar addons en tarjetas
+    function displayAddons(addons) {
+      loading.style.display = 'none';
+      cardsContainer.style.display = 'flex';
+      
+      if (addons.length === 0) {
+        noResults.style.display = 'block';
+        cardsContainer.innerHTML = '';
+        return;
+      }
+      
+      noResults.style.display = 'none';
+      
+      cardsContainer.innerHTML = addons.map(addon => `
+        <div class="card" data-url="${addon.downloadUrl}" data-name="${addon.name}" data-author="${addon.author}">
+          <div class="logo-frame">
+            <img src="${addon.imageUrl}" alt="${addon.name}" onerror="this.src='https://via.placeholder.com/150/0a0a12/3a86ff?text=Addon'">
+          </div>
+          <div class="card-info">
+            <h2 class="card-title">${addon.name}</h2>
+            <div class="author-container">
+              <p class="card-author">by <span class="author-name">${addon.author}</span></p>
+              ${verifiedUsers.includes(addon.author) ? `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="verified-user-icon">
+                  <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                </svg>
+              ` : ''}
+            </div>
+          </div>
+          <div class="version-container">
+            <span class="version-text">v${addon.version}</span>
+          </div>
+        </div>
+      `).join('');
+      
+      // Agregar event listeners a las nuevas tarjetas
+      document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', handleCardClick);
+      });
+    }
+
+    // Función de búsqueda
+    function handleSearch() {
+      const searchTerm = searchBox.value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.card');
+      let hasResults = false;
+
+      cards.forEach(card => {
+        const cardName = card.getAttribute('data-name').toLowerCase();
+        const cardAuthor = card.getAttribute('data-author').toLowerCase();
+        
+        if (cardName.includes(searchTerm) || cardAuthor.includes(searchTerm)) {
+          card.style.display = 'flex';
+          hasResults = true;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Mostrar mensaje de no resultados
+      if (!hasResults && searchTerm !== '') {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
 
     function onScroll() {
       const scrollY = window.scrollY;
@@ -505,9 +603,8 @@
 
     function init() {
       window.addEventListener('scroll', onScroll, { passive: true });
-      cards.forEach(card => {
-        card.addEventListener('click', handleCardClick);
-      });
+      searchBox.addEventListener('input', handleSearch);
+      loadAddons();
     }
 
     if (document.readyState === 'loading') {
@@ -517,4 +614,4 @@
     }
   </script>
 </body>
-  </html>
+</html>
