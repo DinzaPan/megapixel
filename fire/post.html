@@ -317,6 +317,23 @@
       font-size: 0.8rem;
     }
 
+    .delete-btn {
+      position: absolute;
+      top: 12px;
+      right: 70px;
+      background: rgba(244, 67, 54, 0.2);
+      border: 1px solid rgba(244, 67, 54, 0.3);
+      color: #f44336;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .delete-btn:hover {
+      background: rgba(244, 67, 54, 0.3);
+    }
+
     .edit-form {
       display: none;
       background: rgba(15, 15, 20, 0.8);
@@ -546,7 +563,6 @@
     <i class="fas fa-plus"></i>
   </button>
 
-  <script src="./js/list.js"></script>
   <script>
     const JSONBIN_BIN_ID = '690d4c7843b1c97be99dc705';
     const JSONBIN_MASTER_KEY = '$2a$10$IO4HdN4Wy8PwCaYknx9Yxegti3kHcf8gxUWMldt2yaEuuhDZxvD/2';
@@ -555,6 +571,7 @@
 
     let currentUser = localStorage.getItem('mcPixelUsername');
     let userAddons = [];
+    let verifiedUsers = ['admin', 'verified_user']; // Lista de usuarios verificados
 
     function init() {
       if (currentUser) {
@@ -715,6 +732,7 @@
           <div class="version-container">
             <span class="version-text">v${addon.version}</span>
           </div>
+          <button class="delete-btn" onclick="deleteAddon('${addon.id}')">Eliminar</button>
           <button class="edit-btn" onclick="toggleEditForm('${addon.id}')">Editar</button>
           
           <div class="edit-form" id="editForm-${addon.id}">
@@ -792,6 +810,37 @@
       } catch (error) {
         console.error('Error actualizando addon:', error);
         showMessage('Error al actualizar el addon', 'error');
+      }
+    }
+
+    async function deleteAddon(addonId) {
+      if (!confirm('¿Estás seguro de que quieres eliminar este addon? Esta acción no se puede deshacer.')) {
+        return;
+      }
+
+      try {
+        const data = await makeRequest(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
+          headers: { 'X-Master-Key': JSONBIN_MASTER_KEY }
+        });
+
+        const addons = data.record?.addons || [];
+        const filteredAddons = addons.filter(addon => addon.id !== addonId);
+
+        await makeRequest(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Master-Key': JSONBIN_MASTER_KEY
+          },
+          body: JSON.stringify({ addons: filteredAddons })
+        });
+
+        showMessage('Addon eliminado correctamente', 'success');
+        loadUserAddons();
+
+      } catch (error) {
+        console.error('Error eliminando addon:', error);
+        showMessage('Error al eliminar el addon', 'error');
       }
     }
 
