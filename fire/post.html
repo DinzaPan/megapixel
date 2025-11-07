@@ -7,11 +7,10 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="icon" href="./img/logo2.png" type="image/png">
+  <link rel="icon" href="../img/logo2.png" type="image/png">
 
   <style>
     :root {
-      --transition-fast: 260ms;
       --primary-color: #3a86ff;
       --secondary-color: #8338ec;
       --accent-color: #ff006e;
@@ -39,7 +38,7 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: 1.2rem 2rem;
+      padding: 1rem 1.5rem;
       background: rgba(10, 10, 18, 0.98);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -60,13 +59,13 @@
     }
 
     .nav-logo img {
-      height: 70px;
+      height: 50px;
       width: auto;
       filter: drop-shadow(0 0 15px rgba(58, 134, 255, 0.4));
     }
 
     .nav-title {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       font-weight: 700;
       background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
       -webkit-background-clip: text;
@@ -77,10 +76,11 @@
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
+      padding: 8px 16px;
+      border-radius: 8px;
       cursor: pointer;
       text-decoration: none;
+      font-size: 0.9rem;
       transition: all 0.3s ease;
     }
 
@@ -90,37 +90,40 @@
 
     .container {
       min-height: 100vh;
-      padding: 120px 20px 40px;
+      padding: 100px 20px 40px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      max-width: 1200px;
+      max-width: 800px;
       margin: 0 auto;
     }
 
     .user-setup {
       background: rgba(10, 10, 15, 0.5);
-      padding: 30px;
-      border-radius: 20px;
+      padding: 25px;
+      border-radius: 15px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       width: 100%;
     }
 
     .user-setup h2 {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       color: white;
+      font-size: 1.3rem;
     }
 
     .user-input {
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
       padding: 12px 15px;
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 10px;
+      border-radius: 8px;
       color: white;
       margin-bottom: 15px;
+      font-size: 0.95rem;
     }
 
     .user-input::placeholder {
@@ -131,10 +134,10 @@
       background: var(--primary-color);
       color: white;
       border: none;
-      padding: 12px 30px;
-      border-radius: 10px;
+      padding: 10px 25px;
+      border-radius: 8px;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 0.95rem;
       transition: all 0.3s ease;
     }
 
@@ -144,46 +147,48 @@
 
     .current-user {
       background: rgba(10, 10, 15, 0.5);
-      padding: 20px;
-      border-radius: 15px;
+      padding: 15px;
+      border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       width: 100%;
       text-align: center;
     }
 
     .current-user h3 {
       color: var(--primary-color);
-      margin-bottom: 10px;
+      margin-bottom: 5px;
+      font-size: 1.1rem;
     }
 
     .publish-form {
       background: rgba(10, 10, 15, 0.5);
-      padding: 30px;
-      border-radius: 20px;
+      padding: 25px;
+      border-radius: 15px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       width: 100%;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: rgba(255, 255, 255, 0.9);
+      font-size: 0.9rem;
     }
 
     .form-input {
       width: 100%;
-      padding: 12px 15px;
+      padding: 10px 12px;
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 10px;
+      border-radius: 8px;
       color: white;
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
     .form-input::placeholder {
@@ -191,12 +196,12 @@
     }
 
     .image-preview {
-      width: 200px;
-      height: 200px;
-      border-radius: 15px;
+      width: 150px;
+      height: 150px;
+      border-radius: 12px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      margin: 15px auto;
+      margin: 12px auto;
       overflow: hidden;
       display: none;
     }
@@ -211,10 +216,10 @@
       background: var(--primary-color);
       color: white;
       border: none;
-      padding: 15px 40px;
-      border-radius: 10px;
+      padding: 12px 30px;
+      border-radius: 8px;
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: 1rem;
       width: 100%;
       transition: all 0.3s ease;
     }
@@ -226,25 +231,25 @@
     .cards-container {
       display: flex;
       flex-direction: column;
-      gap: 25px;
+      gap: 20px;
       width: 100%;
     }
 
     .card {
       background: rgba(10, 10, 15, 0.5);
-      border-radius: 20px;
-      padding: 25px;
+      border-radius: 15px;
+      padding: 20px;
       border: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
       position: relative;
     }
 
     .logo-frame {
-      width: 80px;
-      height: 80px;
-      border-radius: 15px;
+      width: 70px;
+      height: 70px;
+      border-radius: 12px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
       overflow: hidden;
@@ -262,20 +267,20 @@
     }
 
     .card-title {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: #ffffff;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
 
     .author-container {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
     .card-author {
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.8);
     }
 
@@ -286,71 +291,74 @@
 
     .version-container {
       position: absolute;
-      bottom: 15px;
-      right: 20px;
+      bottom: 12px;
+      right: 15px;
       background: rgba(255, 255, 255, 0.05);
-      padding: 5px 10px;
-      border-radius: 10px;
+      padding: 4px 8px;
+      border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .version-text {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.8);
     }
 
     .edit-btn {
       position: absolute;
-      top: 15px;
-      right: 15px;
+      top: 12px;
+      right: 12px;
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: white;
-      padding: 8px 12px;
-      border-radius: 8px;
+      padding: 6px 10px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
     }
 
     .edit-form {
       display: none;
       background: rgba(15, 15, 20, 0.8);
-      padding: 20px;
-      border-radius: 15px;
-      margin-top: 15px;
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 12px;
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .form-actions {
       display: flex;
-      gap: 10px;
-      margin-top: 15px;
+      gap: 8px;
+      margin-top: 12px;
     }
 
     .save-btn {
       background: var(--primary-color);
       color: white;
       border: none;
-      padding: 8px 20px;
-      border-radius: 8px;
+      padding: 6px 15px;
+      border-radius: 6px;
       cursor: pointer;
+      font-size: 0.85rem;
     }
 
     .cancel-btn {
       background: rgba(255, 255, 255, 0.1);
       color: white;
       border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 8px 20px;
-      border-radius: 8px;
+      padding: 6px 15px;
+      border-radius: 6px;
       cursor: pointer;
+      font-size: 0.85rem;
     }
 
     .message {
-      padding: 10px 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin-bottom: 12px;
       text-align: center;
       display: none;
+      font-size: 0.9rem;
     }
 
     .success {
@@ -368,7 +376,107 @@
     .loading {
       text-align: center;
       color: rgba(255, 255, 255, 0.6);
-      margin: 20px 0;
+      margin: 15px 0;
+      font-size: 0.9rem;
+    }
+
+    .floating-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(58, 134, 255, 0.4);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      border: none;
+    }
+
+    .floating-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(58, 134, 255, 0.6);
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0.8rem 1rem;
+      }
+      
+      .nav-logo img {
+        height: 40px;
+      }
+      
+      .nav-title {
+        font-size: 1.2rem;
+      }
+      
+      .back-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+      }
+      
+      .container {
+        padding: 90px 15px 30px;
+      }
+      
+      .user-setup, .publish-form {
+        padding: 20px;
+      }
+      
+      .card {
+        padding: 15px;
+        gap: 12px;
+      }
+      
+      .logo-frame {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .card-title {
+        font-size: 1.1rem;
+      }
+      
+      .floating-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 80px 12px 25px;
+      }
+      
+      .user-setup, .publish-form {
+        padding: 15px;
+      }
+      
+      .card {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+      
+      .author-container {
+        justify-content: center;
+      }
+      
+      .version-container {
+        position: static;
+        margin-top: 8px;
+        display: inline-block;
+      }
     }
   </style>
 </head>
@@ -380,31 +488,27 @@
         <img src="./img/logo.png" alt="MegaPixelFL">
         <div class="nav-title">Publicar Addon</div>
       </div>
-      <a href="index.html" class="back-btn">
+      <a href="./mcpixel.html" class="back-btn">
         <i class="fas fa-arrow-left"></i> Volver
       </a>
     </div>
   </nav>
 
   <div class="container">
-    <!-- Configuración de Usuario -->
     <div class="user-setup" id="userSetup">
       <h2>Configura tu nombre de usuario</h2>
       <input type="text" class="user-input" id="usernameInput" placeholder="Tu nombre de usuario">
       <button class="confirm-btn" onclick="setUsername()">Confirmar</button>
     </div>
 
-    <!-- Usuario Actual -->
     <div class="current-user" id="currentUser" style="display: none;">
       <h3>Publicando como: <span id="currentUsername"></span></h3>
     </div>
 
-    <!-- Mensajes -->
     <div class="message" id="message"></div>
 
-    <!-- Formulario de Publicación -->
     <div class="publish-form" id="publishForm" style="display: none;">
-      <h2 style="margin-bottom: 20px; text-align: center;">Publicar Nuevo Addon</h2>
+      <h2 style="margin-bottom: 15px; text-align: center; font-size: 1.3rem;">Publicar Nuevo Addon</h2>
       
       <div class="form-group">
         <label>URL de la imagen de portada:</label>
@@ -433,15 +537,17 @@
       <button class="publish-btn" onclick="publishAddon()">Publicar Addon</button>
     </div>
 
-    <!-- Addons Publicados -->
-    <h2 style="width: 100%; margin-bottom: 20px;">Tus Addons Publicados</h2>
+    <h2 style="width: 100%; margin-bottom: 15px; font-size: 1.3rem;">Tus Addons Publicados</h2>
     <div class="loading" id="loadingAddons" style="display: none;">Cargando tus addons...</div>
     <div class="cards-container" id="userAddonsContainer"></div>
   </div>
 
+  <button class="floating-btn" onclick="showPublishForm()">
+    <i class="fas fa-plus"></i>
+  </button>
+
   <script src="./js/list.js"></script>
   <script>
-    // CONFIGURACIÓN ACTUALIZADA CON TUS DATOS REALES
     const JSONBIN_BIN_ID = '690d4c7843b1c97be99dc705';
     const JSONBIN_MASTER_KEY = '$2a$10$IO4HdN4Wy8PwCaYknx9Yxegti3kHcf8gxUWMldt2yaEuuhDZxvD/2';
     let lastRequestTime = 0;
@@ -450,7 +556,6 @@
     let currentUser = localStorage.getItem('mcPixelUsername');
     let userAddons = [];
 
-    // Inicializar página
     function init() {
       if (currentUser) {
         showPublishForm();
@@ -458,7 +563,6 @@
       loadUserAddons();
     }
 
-    // Establecer nombre de usuario
     function setUsername() {
       const username = document.getElementById('usernameInput').value.trim();
       if (username) {
@@ -471,7 +575,6 @@
       }
     }
 
-    // Mostrar formulario de publicación
     function showPublishForm() {
       document.getElementById('userSetup').style.display = 'none';
       document.getElementById('currentUser').style.display = 'block';
@@ -479,7 +582,6 @@
       document.getElementById('currentUsername').textContent = currentUser;
     }
 
-    // Vista previa de imagen
     function previewImage() {
       const imageUrl = document.getElementById('imageUrl').value;
       const preview = document.getElementById('imagePreview');
@@ -497,7 +599,6 @@
       }
     }
 
-    // Rate limiting para peticiones
     async function makeRequest(url, options = {}) {
       const now = Date.now();
       const timeSinceLastRequest = now - lastRequestTime;
@@ -511,7 +612,6 @@
       return response.json();
     }
 
-    // Publicar addon
     async function publishAddon() {
       const imageUrl = document.getElementById('imageUrl').value;
       const addonName = document.getElementById('addonName').value;
@@ -524,14 +624,12 @@
       }
 
       try {
-        // Obtener addons existentes
         const data = await makeRequest(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
           headers: { 'X-Master-Key': JSONBIN_MASTER_KEY }
         });
 
         const addons = data.record?.addons || [];
         
-        // Agregar nuevo addon
         const newAddon = {
           id: Date.now().toString(),
           name: addonName,
@@ -544,7 +642,6 @@
 
         addons.push(newAddon);
 
-        // Actualizar en JSONBin.io
         await makeRequest(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
           method: 'PUT',
           headers: {
@@ -554,7 +651,6 @@
           body: JSON.stringify({ addons: addons })
         });
 
-        // Limpiar formulario
         document.getElementById('imageUrl').value = '';
         document.getElementById('addonName').value = '';
         document.getElementById('minecraftVersion').value = '';
@@ -570,7 +666,6 @@
       }
     }
 
-    // Cargar addons del usuario
     async function loadUserAddons() {
       if (!currentUser) return;
 
@@ -593,7 +688,6 @@
       }
     }
 
-    // Mostrar addons del usuario
     function displayUserAddons() {
       const container = document.getElementById('userAddonsContainer');
       
@@ -612,7 +706,7 @@
             <div class="author-container">
               <p class="card-author">by <span class="author-name">${addon.author}</span></p>
               ${verifiedUsers.includes(addon.author) ? `
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px; color: var(--primary-color);">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; color: var(--primary-color);">
                   <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
                 </svg>
               ` : ''}
@@ -649,13 +743,11 @@
       `).join('');
     }
 
-    // Mostrar/ocultar formulario de edición
     function toggleEditForm(addonId) {
       const form = document.getElementById(`editForm-${addonId}`);
       form.style.display = form.style.display === 'none' ? 'block' : 'none';
     }
 
-    // Actualizar addon
     async function updateAddon(addonId) {
       try {
         const imageUrl = document.getElementById(`editImageUrl-${addonId}`).value;
@@ -668,7 +760,6 @@
           return;
         }
 
-        // Obtener addons existentes
         const data = await makeRequest(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
           headers: { 'X-Master-Key': JSONBIN_MASTER_KEY }
         });
@@ -677,7 +768,6 @@
         const addonIndex = addons.findIndex(addon => addon.id === addonId);
 
         if (addonIndex !== -1) {
-          // Actualizar addon
           addons[addonIndex] = {
             ...addons[addonIndex],
             imageUrl: imageUrl,
@@ -686,7 +776,6 @@
             downloadUrl: downloadUrl
           };
 
-          // Guardar cambios
           await makeRequest(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
             method: 'PUT',
             headers: {
@@ -706,7 +795,6 @@
       }
     }
 
-    // Mostrar mensajes
     function showMessage(text, type) {
       const message = document.getElementById('message');
       message.textContent = text;
@@ -718,7 +806,6 @@
       }, 5000);
     }
 
-    // Inicializar cuando se carga la página
     document.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
