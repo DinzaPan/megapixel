@@ -34,7 +34,6 @@
       scroll-behavior: smooth;
     }
 
-    /* BARRA SUPERIOR */
     .navbar {
       position: fixed;
       top: 0;
@@ -86,7 +85,6 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* CONTENIDO PRINCIPAL */
     .container {
       min-height: 100vh;
       padding: 120px 20px 40px;
@@ -95,7 +93,6 @@
       align-items: center;
     }
 
-    /* BUSCADOR */
     .search-container {
       max-width: 600px;
       width: 100%;
@@ -136,7 +133,6 @@
       font-size: 1.2rem;
     }
 
-    /* GRID DE TARJETAS HORIZONTALES PARA PC */
     .cards-container {
       display: flex;
       flex-direction: column;
@@ -224,7 +220,6 @@
       margin-left: 2px;
     }
 
-    /* VERSIÓN DE MINECRAFT */
     .version-container {
       position: absolute;
       bottom: 20px;
@@ -244,7 +239,30 @@
       font-weight: 500;
     }
 
-    /* BOTÓN FLOTANTE */
+    .share-btn {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      z-index: 10;
+    }
+
+    .share-btn:hover {
+      background: var(--primary-color);
+      transform: scale(1.1);
+    }
+
     .floating-btn {
       position: fixed;
       bottom: 30px;
@@ -270,7 +288,6 @@
       box-shadow: 0 6px 25px rgba(58, 134, 255, 0.6);
     }
 
-    /* MENSAJE DE NO RESULTADOS */
     .no-results {
       text-align: center;
       color: rgba(255, 255, 255, 0.6);
@@ -279,7 +296,6 @@
       display: none;
     }
 
-    /* LOADING */
     .loading {
       text-align: center;
       color: rgba(255, 255, 255, 0.6);
@@ -287,7 +303,6 @@
       margin-top: 40px;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 768px) {
       .navbar {
         padding: 1rem 1.5rem;
@@ -354,6 +369,14 @@
       
       .version-text {
         font-size: 0.85rem;
+      }
+      
+      .share-btn {
+        top: 15px;
+        right: 20px;
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
       }
       
       .floating-btn {
@@ -427,6 +450,14 @@
       .version-text {
         font-size: 0.8rem;
       }
+      
+      .share-btn {
+        top: 12px;
+        right: 15px;
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -442,23 +473,19 @@
   </nav>
 
   <div class="container">
-    <!-- BUSCADOR -->
     <div class="search-container">
       <input type="text" class="search-box" id="searchBox" placeholder="Buscar addons por nombre o creador...">
       <i class="fas fa-search search-icon"></i>
     </div>
     
-    <!-- MENSAJE DE NO RESULTADOS -->
     <div class="no-results" id="noResults">
       No se encontraron addons que coincidan con tu búsqueda
     </div>
 
-    <!-- LOADING -->
     <div class="loading" id="loading">
       Cargando addons...
     </div>
     
-    <!-- TARJETAS -->
     <div class="cards-container" id="cardsContainer"></div>
   </div>
 
@@ -470,13 +497,11 @@
     const noResults = document.getElementById('noResults');
     const loading = document.getElementById('loading');
 
-    // CONFIGURACIÓN ACTUALIZADA CON TUS DATOS REALES
     const JSONBIN_BIN_ID = '690d4c7843b1c97be99dc705';
     const JSONBIN_MASTER_KEY = '$2a$10$IO4HdN4Wy8PwCaYknx9Yxegti3kHcf8gxUWMldt2yaEuuhDZxvD/2';
     let lastRequestTime = 0;
-    const REQUEST_DELAY = 1000; // 1 segundo entre peticiones
+    const REQUEST_DELAY = 1000;
 
-    // Función para hacer peticiones con rate limiting
     async function makeRequest(url, options = {}) {
       const now = Date.now();
       const timeSinceLastRequest = now - lastRequestTime;
@@ -490,7 +515,6 @@
       return response.json();
     }
 
-    // Cargar addons desde JSONBin.io
     async function loadAddons() {
       try {
         loading.style.display = 'block';
@@ -503,6 +527,9 @@
         });
         
         const addons = data.record?.addons || [];
+        
+        addons.sort((a, b) => new Date(b.dateAdded || 0) - new Date(a.dateAdded || 0));
+        
         displayAddons(addons);
         
       } catch (error) {
@@ -513,7 +540,6 @@
       }
     }
 
-    // Mostrar addons en tarjetas
     function displayAddons(addons) {
       loading.style.display = 'none';
       cardsContainer.style.display = 'flex';
@@ -545,16 +571,44 @@
           <div class="version-container">
             <span class="version-text">v${addon.version}</span>
           </div>
+          <button class="share-btn" title="Compartir addon">
+            <i class="fas fa-share-alt"></i>
+          </button>
         </div>
       `).join('');
       
-      // Agregar event listeners a las nuevas tarjetas
       document.querySelectorAll('.card').forEach(card => {
         card.addEventListener('click', handleCardClick);
       });
+      
+      document.querySelectorAll('.share-btn').forEach(btn => {
+        btn.addEventListener('click', handleShareClick);
+      });
     }
 
-    // Función de búsqueda
+    function handleShareClick(e) {
+      e.stopPropagation();
+      
+      const card = this.closest('.card');
+      const addonName = card.getAttribute('data-name');
+      const addonAuthor = card.getAttribute('data-author');
+      
+      const searchUrl = `?search=${encodeURIComponent(addonName + ' ' + addonAuthor)}`;
+      const currentUrl = window.location.href.split('?')[0] + searchUrl;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: `Addon ${addonName} por ${addonAuthor}`,
+          text: `Descubre el addon ${addonName} creado por ${addonAuthor} en MCPixel`,
+          url: currentUrl
+        });
+      } else {
+        navigator.clipboard.writeText(currentUrl).then(() => {
+          alert('Enlace copiado al portapapeles: ' + currentUrl);
+        });
+      }
+    }
+
     function handleSearch() {
       const searchTerm = searchBox.value.toLowerCase().trim();
       const cards = document.querySelectorAll('.card');
@@ -572,7 +626,6 @@
         }
       });
 
-      // Mostrar mensaje de no resultados
       if (!hasResults && searchTerm !== '') {
         noResults.style.display = 'block';
       } else {
@@ -590,9 +643,11 @@
     }
 
     function handleCardClick(e) {
-      const url = this.getAttribute('data-url');
-      if (url && url.startsWith('http')) {
-        window.open(url, '_blank');
+      if (!e.target.closest('.share-btn')) {
+        const url = this.getAttribute('data-url');
+        if (url && url.startsWith('http')) {
+          window.open(url, '_blank');
+        }
       }
     }
 
