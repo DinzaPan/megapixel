@@ -16,31 +16,23 @@
             min-height: 80vh;
             text-align: center;
             padding: 2rem;
-            width: 100%;
         }
 
-        .error-message {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 4rem 3rem;
-            text-align: center;
-            color: var(--dark-text);
+        .error-card {
             background-color: var(--card-bg);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            margin: 2rem 0;
-            width: 90%;
-            max-width: 600px;
-            min-height: 500px;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
             border: 1px solid var(--border-color);
+            max-width: 500px;
+            width: 100%;
+            animation: fadeInUp 0.6s ease;
         }
-        
+
         .error-icon {
-            width: 160px;
-            height: 160px;
-            margin-bottom: 2.5rem;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem auto;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -54,114 +46,83 @@
             object-fit: cover;
             border-radius: 50%;
         }
-        
-        .error-text {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
+
+        .error-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
             background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            line-height: 1;
-        }
-        
-        .error-details {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-            max-width: 450px;
         }
 
-        .download-btn {
+        .error-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .error-actions {
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-            background: var(--gradient);
-            color: white;
-            padding: 1.2rem 2.5rem;
-            border-radius: 12px;
+            gap: 0.5rem;
+            padding: 12px 24px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(26, 115, 232, 0.3);
             border: none;
             cursor: pointer;
             font-family: inherit;
-            font-size: 1.1rem;
-            min-width: 200px;
+            font-size: 1rem;
         }
 
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(26, 115, 232, 0.4);
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 115, 232, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 768px) {
-            .error-container {
-                padding: 1rem;
-                min-height: 70vh;
-            }
-
-            .error-message {
-                padding: 3rem 2rem;
-                margin: 1rem 0;
-                width: 95%;
-                min-height: 400px;
-                max-width: none;
-            }
-            
-            .error-text {
-                font-size: 3.5rem;
-                margin-bottom: 1rem;
-            }
-            
-            .error-icon {
-                width: 140px;
-                height: 140px;
-                margin-bottom: 2rem;
-            }
-
-            .error-details {
-                font-size: 1.1rem;
-                margin-bottom: 2.5rem;
-                padding: 0 1rem;
-            }
-
-            .download-btn {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-                min-width: 180px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .error-message {
-                padding: 2.5rem 1.5rem;
-                min-height: 350px;
-            }
-
-            .error-text {
-                font-size: 3rem;
+            .error-card {
+                padding: 2rem;
+                margin: 1rem;
             }
 
             .error-icon {
-                width: 120px;
-                height: 120px;
-                margin-bottom: 1.5rem;
+                width: 100px;
+                height: 100px;
             }
 
-            .error-details {
+            .error-title {
+                font-size: 2.5rem;
+            }
+
+            .error-description {
                 font-size: 1rem;
-                margin-bottom: 2rem;
-                padding: 0;
-            }
-
-            .download-btn {
-                padding: 0.9rem 1.8rem;
-                min-width: 160px;
             }
         }
     </style>
@@ -179,16 +140,21 @@
 
     <main class="container">
         <div class="error-container">
-            <div class="error-message">
+            <div class="error-card">
                 <div class="error-icon">
                     <img src="../img/searching.gif" alt="Buscando" onerror="this.style.display='none'">
                 </div>
-                <h3 class="error-text">404</h3>
-                <p class="error-details">La página que estás buscando no existe o ha sido movida. Verifica la URL e intenta nuevamente.</p>
-                <button class="download-btn" onclick="window.location.href='../index.html'">
-                    <i class="fas fa-home"></i>
-                    Volver al inicio
-                </button>
+                <h1 class="error-title">404</h1>
+                <p class="error-description">
+                    La página que estás buscando no existe o ha sido movida. 
+                    Verifica la URL e intenta nuevamente.
+                </p>
+                <div class="error-actions">
+                    <a href="../index.html" class="btn btn-primary">
+                        <i class="fas fa-home"></i>
+                        Volver al Inicio
+                    </a>
+                </div>
             </div>
         </div>
     </main>
