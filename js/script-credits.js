@@ -28,8 +28,8 @@ let userData = {
   invoices: []
 };
 
-const CREDITS_PER_DAY = 6;
-const GENERATION_INTERVAL = 24 * 60 * 60 * 1000;
+const CREDITS_PER_INTERVAL = 7;
+const GENERATION_INTERVAL = 2 * 60 * 60 * 1000;
 
 function initUserData() {
   const savedData = localStorage.getItem('megapixelUserData');
@@ -53,8 +53,8 @@ function updateCreditsFromTime() {
   const timeDiff = now - userData.lastCreditUpdate;
   
   if (timeDiff >= GENERATION_INTERVAL) {
-    const daysPassed = Math.floor(timeDiff / GENERATION_INTERVAL);
-    const creditsToAdd = daysPassed * CREDITS_PER_DAY;
+    const intervalsPassed = Math.floor(timeDiff / GENERATION_INTERVAL);
+    const creditsToAdd = intervalsPassed * CREDITS_PER_INTERVAL;
     
     if (creditsToAdd > 0) {
       userData.balance += creditsToAdd;
