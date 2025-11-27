@@ -11,6 +11,7 @@ const confirmButton = document.getElementById('confirmButton');
 
 const balanceAmount = document.getElementById('balanceAmount');
 const invoicesList = document.getElementById('invoicesList');
+const nextGenerationTime = document.getElementById('nextGenerationTime');
 
 const invoiceModal = document.getElementById('invoiceModal');
 const invoiceId = document.getElementById('invoiceId');
@@ -27,6 +28,9 @@ let userData = {
   invoices: []
 };
 
+const CREDITS_PER_DAY = 6;
+const GENERATION_INTERVAL = 24 * 60 * 60 * 1000;
+
 function initUserData() {
   const savedData = localStorage.getItem('megapixelUserData');
   if (savedData) {
@@ -39,6 +43,7 @@ function initUserData() {
       welcomeCard.style.display = 'none';
       creditsSystem.style.display = 'block';
       updateUI();
+      startGenerationTimer();
     }
   }
 }
@@ -46,15 +51,17 @@ function initUserData() {
 function updateCreditsFromTime() {
   const now = Date.now();
   const timeDiff = now - userData.lastCreditUpdate;
-  const minutesPassed = timeDiff / (1000 * 60);
-  const creditIntervals = Math.floor(minutesPassed / 7);
   
-  if (creditIntervals > 0) {
-    const creditsToAdd = creditIntervals * 5;
-    userData.balance += creditsToAdd;
-    userData.lastCreditUpdate = now - (timeDiff % (7 * 60 * 1000));
-    saveUserData();
-    updateUI();
+  if (timeDiff >= GENERATION_INTERVAL) {
+    const daysPassed = Math.floor(timeDiff / GENERATION_INTERVAL);
+    const creditsToAdd = daysPassed * CREDITS_PER_DAY;
+    
+    if (creditsToAdd > 0) {
+      userData.balance += creditsToAdd;
+      userData.lastCreditUpdate = now - (timeDiff % GENERATION_INTERVAL);
+      saveUserData();
+      updateUI();
+    }
   }
 }
 
@@ -65,6 +72,7 @@ function saveUserData() {
 function updateUI() {
   balanceAmount.textContent = userData.balance;
   updateInvoicesList();
+  updateGenerationTimer();
 }
 
 function updateInvoicesList() {
@@ -132,17 +140,31 @@ function handleUserConfirmation() {
   welcomeCard.style.display = 'none';
   creditsSystem.style.display = 'block';
   updateUI();
+  startGenerationTimer();
 }
 
-function startCreditGeneration() {
-  setInterval(() => {
-    if (userData.username) {
-      userData.balance += 5;
-      userData.lastCreditUpdate = Date.now();
-      saveUserData();
-      updateUI();
-    }
-  }, 7 * 60 * 1000);
+function startGenerationTimer() {
+  updateGenerationTimer();
+  setInterval(updateGenerationTimer, 1000);
+}
+
+function updateGenerationTimer() {
+  if (!userData.lastCreditUpdate) return;
+  
+  const now = Date.now();
+  const nextGenTime = userData.lastCreditUpdate + GENERATION_INTERVAL;
+  const timeRemaining = nextGenTime - now;
+  
+  if (timeRemaining <= 0) {
+    nextGenerationTime.textContent = '¡Créditos disponibles!';
+    updateCreditsFromTime();
+  } else {
+    const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+    
+    nextGenerationTime.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  }
 }
 
 function handleNavigation(e) {
@@ -209,7 +231,6 @@ function initEvents() {
 function init() {
   initUserData();
   initEvents();
-  startCreditGeneration();
   
   window.showPurchaseModal = function(planName, planCost) {
     if (userData.balance < planCost) {
