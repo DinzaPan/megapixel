@@ -11,7 +11,6 @@ const confirmButton = document.getElementById('confirmButton');
 
 const balanceAmount = document.getElementById('balanceAmount');
 const invoicesList = document.getElementById('invoicesList');
-const nextGenerationTime = document.getElementById('nextGenerationTime');
 
 const invoiceModal = document.getElementById('invoiceModal');
 const invoiceId = document.getElementById('invoiceId');
@@ -43,7 +42,6 @@ function initUserData() {
       welcomeCard.style.display = 'none';
       creditsSystem.style.display = 'block';
       updateUI();
-      startGenerationTimer();
     }
   }
 }
@@ -72,7 +70,6 @@ function saveUserData() {
 function updateUI() {
   balanceAmount.textContent = userData.balance;
   updateInvoicesList();
-  updateGenerationTimer();
 }
 
 function updateInvoicesList() {
@@ -140,31 +137,6 @@ function handleUserConfirmation() {
   welcomeCard.style.display = 'none';
   creditsSystem.style.display = 'block';
   updateUI();
-  startGenerationTimer();
-}
-
-function startGenerationTimer() {
-  updateGenerationTimer();
-  setInterval(updateGenerationTimer, 1000);
-}
-
-function updateGenerationTimer() {
-  if (!userData.lastCreditUpdate) return;
-  
-  const now = Date.now();
-  const nextGenTime = userData.lastCreditUpdate + GENERATION_INTERVAL;
-  const timeRemaining = nextGenTime - now;
-  
-  if (timeRemaining <= 0) {
-    nextGenerationTime.textContent = '¡Créditos disponibles!';
-    updateCreditsFromTime();
-  } else {
-    const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
-    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-    
-    nextGenerationTime.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  }
 }
 
 function handleNavigation(e) {
